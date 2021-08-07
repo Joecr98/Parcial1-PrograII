@@ -1,0 +1,137 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.joe.misclases;
+
+/**
+ *
+ * @author Joe
+ */
+public class ClsVariables {
+
+    /**
+     * @return the Unidades
+     */
+    public double getUnidades() {
+        return Unidades;
+    }
+
+    /**
+     * @param Unidades the Unidades to set
+     */
+    public void setUnidades(double Unidades) {
+        this.Unidades = Unidades;
+    }
+
+    /**
+     * @return the Peso
+     */
+    public double getPeso() {
+        return Peso;
+    }
+
+    /**
+     * @param Peso the Peso to set
+     */
+    public void setPeso(double Peso) {
+        this.Peso = Peso;
+    }
+
+    /**
+     * @return the Descripcion
+     */
+    public String getDescripcion() {
+        return Descripcion;
+    }
+
+    /**
+     * @param Descripcion the Descripcion to set
+     */
+    public void setDescripcion(String Descripcion) {
+        this.Descripcion = Descripcion;
+    }
+
+    /**
+     * @return the Valorfac
+     */
+    public double getValorfac() {
+        return Valorfac;
+    }
+
+    /**
+     * @param Valorfac the Valorfac to set
+     */
+    public void setValorfac(double Valorfac) {
+        this.Valorfac = Valorfac;
+    }
+
+    /**
+     * @return the Gastoval
+     */
+    public double getGastoval() {
+        return Gastoval;
+    }
+
+    /**
+     * @param Gastoval the Gastoval to set
+     */
+    public void setGastoval(double Gastoval) {
+        this.Gastoval = Gastoval;
+    }
+
+    /**
+     * @return the Gastopes
+     */
+    public double getGastopes() {
+        return Gastopes;
+    }
+
+    /**
+     * @param Gastopes the Gastopes to set
+     */
+    public void setGastopes(double Gastopes) {
+        this.Gastopes = Gastopes;
+    }
+
+    /**
+     * @return the CostoUnidad
+     */
+    public double getCostoUnidad() {
+        return Valorfac + getGastoValor() + getGastoPeso();
+    }
+
+    /**
+     * @return the CostoVolor
+     */
+    public double getGastoValor() {
+        return Unidades * 0.192; // Q38,000 / Q197,950
+
+        //coeficiente de gasto al costo sale de la división de los totales de (suma total CIF / suma total de costos de productos)
+    }
+
+    /**
+     * @return the CostoPeso
+     */
+    public double getGastoPeso() {
+        return Peso * 26.3; // Q8,500 / 322.8
+
+        //coeficiente de gasto al peso sale de la división de los totales de (gastos de transporte relacionados al peso / suma total de peso de toda la mercadería)
+    }
+
+    /**
+     * @return the Costototal
+     */
+    public double getCostoTotal() {
+        return Unidades * getCostoUnidad();
+    }
+
+    private double Unidades;
+    private double Peso;
+    private String Descripcion;
+    private double Valorfac;
+    private double Gastoval;
+    private double Gastopes;
+
+} //fin clase
