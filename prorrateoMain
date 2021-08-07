@@ -3,79 +3,54 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.joe.misclases;
+package com.joe.principal;
 
-import java.text.DecimalFormat;
+import com.joe.misclases.ClsFact;
+import com.joe.misclases.ClsVariables;
 
 /**
  *
- * @author Joe
+ * @author Joe c
  */
-public class ClsFact {
+public class prorrateoMain {
 
-    private String[][] prorra;
-    private float GRANTOTAL = 0;
-    private final int MAX_FILAS = 4;
-    private final int MAX_COLUMNAS = 8;
-    private int FILA_ACTUAL = 0;
-    DecimalFormat df = new DecimalFormat("###.##");
+    public static ClsVariables varfac = new ClsVariables();
+    public static ClsFact facpro = new ClsFact(4);
 
-    private int totalFilas = 0;
+    public static void datosFijos() {
 
-    public ClsFact(int filas) {
-        if (filas > MAX_FILAS) {
+        varfac.setUnidades(15);
+        varfac.setDescripcion("Monitor Asus 24 pulg");
+        varfac.setPeso(8.3);
+        varfac.setValorfac(1300);
+        System.out.println(facpro.AgregaMatriz(varfac));
 
-            throw (new IllegalArgumentException());
-        } else {
-            totalFilas = filas;
-            prorra = new String[totalFilas][MAX_COLUMNAS];
-        }
-    }
+        varfac.setUnidades(23);
+        varfac.setDescripcion("Teclado Gaming\t");
+        varfac.setPeso(1.5);
+        varfac.setValorfac(350);
+        System.out.println(facpro.AgregaMatriz(varfac));
 
-    public String AgregaMatriz(ClsVariables agrega) {
+        varfac.setUnidades(8);
+        varfac.setDescripcion("GPU RTX 2060\t");
+        varfac.setPeso(3.4);
+        varfac.setValorfac(5100);
+        System.out.println(facpro.AgregaMatriz(varfac));
 
-        int UNIDAD = 0;
-        int DESCRIPCION = 1;
-        int PESO = 2;
-        int VALORFAC = 3;
-        int GASTOVAL = 4;
-        int GASTOPES = 5;
-        int COSTOUNI = 6;
-        int COSTOTOTAL = 7;
+        varfac.setUnidades(18);
+        varfac.setDescripcion("Laptop DELL 13 pulg");
+        varfac.setPeso(5.7);
+        varfac.setValorfac(7200);
+        System.out.println(facpro.AgregaMatriz(varfac));
 
-        prorra[FILA_ACTUAL][UNIDAD] = agrega.getUnidades() + "";
-        prorra[FILA_ACTUAL][DESCRIPCION] = agrega.getDescripcion() + "";
-        prorra[FILA_ACTUAL][PESO] = df.format(agrega.getPeso());
-        prorra[FILA_ACTUAL][VALORFAC] = df.format(agrega.getValorfac());
-        prorra[FILA_ACTUAL][GASTOVAL] = df.format(agrega.getGastoValor());
-        prorra[FILA_ACTUAL][GASTOPES] = df.format(agrega.getGastoPeso());
-        prorra[FILA_ACTUAL][COSTOUNI] = df.format(agrega.getCostoUnidad());
-        prorra[FILA_ACTUAL][COSTOTOTAL] = df.format(agrega.getCostoTotal());
-        GRANTOTAL += agrega.getCostoTotal();
-        FILA_ACTUAL += 1;
+    } // fin método entrada datos 
 
-        return (" ");
-    }
+    public static void main(String[] args) {
+        datosFijos();
+        facpro.printMatriz();
 
-    public void printMatriz() {
+        System.out.println("\nGran Total = " + facpro.getGranTotal());
 
-        for (String[] prorra1 : prorra) {
-            System.out.print("|");
-            for (int y = 0; y < prorra1.length; y++) {
-                System.out.print(prorra1[y]);
-                if (y != prorra1.length - 1) {
-                    System.out.print("\t");
-                }
-            }
-            System.out.println("|");
-        }
-    }
-
-    /**
-     * @return the GRANTOTAL
-     */
-    public String getGranTotal() {
-        return df.format(GRANTOTAL);
-    }
+    } //fin main
 
 } //fin clase
