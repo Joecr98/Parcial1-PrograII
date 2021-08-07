@@ -1,0 +1,81 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.joe.misclases;
+
+import java.text.DecimalFormat;
+
+/**
+ *
+ * @author Joe
+ */
+public class ClsFact {
+
+    private String[][] prorra;
+    private float GRANTOTAL = 0;
+    private final int MAX_FILAS = 4;
+    private final int MAX_COLUMNAS = 8;
+    private int FILA_ACTUAL = 0;
+    DecimalFormat df = new DecimalFormat("###.##");
+
+    private int totalFilas = 0;
+
+    public ClsFact(int filas) {
+        if (filas > MAX_FILAS) {
+
+            throw (new IllegalArgumentException());
+        } else {
+            totalFilas = filas;
+            prorra = new String[totalFilas][MAX_COLUMNAS];
+        }
+    }
+
+    public String AgregaMatriz(ClsVariables agrega) {
+
+        int UNIDAD = 0;
+        int DESCRIPCION = 1;
+        int PESO = 2;
+        int VALORFAC = 3;
+        int GASTOVAL = 4;
+        int GASTOPES = 5;
+        int COSTOUNI = 6;
+        int COSTOTOTAL = 7;
+
+        prorra[FILA_ACTUAL][UNIDAD] = agrega.getUnidades() + "";
+        prorra[FILA_ACTUAL][DESCRIPCION] = agrega.getDescripcion() + "";
+        prorra[FILA_ACTUAL][PESO] = df.format(agrega.getPeso());
+        prorra[FILA_ACTUAL][VALORFAC] = df.format(agrega.getValorfac());
+        prorra[FILA_ACTUAL][GASTOVAL] = df.format(agrega.getGastoValor());
+        prorra[FILA_ACTUAL][GASTOPES] = df.format(agrega.getGastoPeso());
+        prorra[FILA_ACTUAL][COSTOUNI] = df.format(agrega.getCostoUnidad());
+        prorra[FILA_ACTUAL][COSTOTOTAL] = df.format(agrega.getCostoTotal());
+        GRANTOTAL += agrega.getCostoTotal();
+        FILA_ACTUAL += 1;
+
+        return (" ");
+    }
+
+    public void printMatriz() {
+
+        for (String[] prorra1 : prorra) {
+            System.out.print("|");
+            for (int y = 0; y < prorra1.length; y++) {
+                System.out.print(prorra1[y]);
+                if (y != prorra1.length - 1) {
+                    System.out.print("\t");
+                }
+            }
+            System.out.println("|");
+        }
+    }
+
+    /**
+     * @return the GRANTOTAL
+     */
+    public String getGranTotal() {
+        return df.format(GRANTOTAL);
+    }
+
+} //fin clase
